@@ -736,33 +736,52 @@ body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
   align-self: flex-start;
 }
 
-/* ===== Section headings: stile coerente con UI (non pacchiano) ===== */
-h2 {
-  position: relative;
-  display: inline-block;
-  padding: 10px 14px 10px 14px;
-  border-radius: 14px;
-  background: rgba(37, 99, 235, 0.06);
-  border: 1px solid rgba(15, 23, 42, 0.10);
-}
+/* ===== Label system: 3 tipi coerenti con "RESEARCH INTERESTS" ===== */
 
-/* piccolo accento a sinistra */
-h2::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
+/* Tipo 1: Sezioni principali (Publications / Courses / Software / Datasets) */
+body > h2 {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
-  opacity: 0.9;
+
+  color: #1e40af;
+  background: rgba(37, 99, 235, 0.10);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+
+  box-shadow: none;                 /* evita effetto “bottone” */
+  margin: 26px 0 10px !important;
 }
 
-/* spazio per il dot */
-h2 {
-  padding-left: 26px;
+/* Tipo 2: Sezioni “intro” (Qualification / Academic career / Activities) */
+body > h3 {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 7px 12px;
+  border-radius: 999px;
+
+  color: #1e40af;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.16);
+
+  margin: 26px 0 10px !important;
+}
+
+/* Tipo 3: Sotto-sezioni (Organizing Committee / Program Committee / International Journals, ecc.) */
+body > h4 {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  color: var(--muted);
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+
+  margin: 14px 0 10px !important;
 }
 
 /* separatore coerente col resto (·) */
@@ -772,4 +791,5 @@ h2 {
   opacity: 0.9;
   font-weight: 600;
 }
+
 
