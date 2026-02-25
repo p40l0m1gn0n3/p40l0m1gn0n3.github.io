@@ -702,3 +702,38 @@ body > ul > li::before {
   color: var(--link-hover);
   border-bottom-color: rgba(37, 99, 235, 0.35);
 }
+
+/* ===== Left keywords: dot sobrio + hover elegante ===== */
+.profile-keywords > div {
+  padding: 2px 6px;
+  border-radius: 10px;
+  transition: background .15s ease, color .15s ease;
+}
+
+.profile-keywords > div::before {
+  background: rgba(15, 23, 42, 0.28);   /* dot soft (grigio) */
+}
+
+.profile-keywords > div:hover {
+  background: rgba(37, 99, 235, 0.06); /* highlight leggero */
+  color: var(--link-hover);
+}
+
+.profile-keywords > div:hover::before {
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
+}
+
+/* ===== Cards: più contrasto (bianco su bianco -> leggibile) ===== */
+body > table:first-of-type,
+body > table:first-of-type > tbody > tr:first-child > td:first-child,
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  background: #fbfcff !important;                 /* bianco “tinto” */
+  border-color: rgba(15, 23, 42, 0.12) !important;/* bordo più percepibile */
+}
+
+/* Badge Research Interests non full-width */
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
+  align-self: flex-start;
+}
