@@ -549,15 +549,31 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
 }
 
 /* Keyword/roles sotto il nome (colonna sinistra) */
+/* ===== Profile keywords: marker + hanging indent ===== */
 .profile-keywords {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
+/* ogni voce ha un dot; se va a capo resta allineata come *stessa* voce */
 .profile-keywords > div {
-  line-height: 1.2;
+  position: relative;
+  padding-left: 14px;     /* spazio per dot */
+  line-height: 1.25;
+}
+
+.profile-keywords > div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--link);
+  opacity: 0.9;
 }
 
 /* Riduce spazio verticale della colonna bottoni (desktop) */
@@ -636,14 +652,36 @@ body > ul > li {
   box-shadow: var(--shadow-soft);
 }
 
-/* accento coerente con bottoni/link */
+/* ===== Modern list style (dot, no classic bullets) ===== */
+body > ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 10px 0 18px 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body > ul > li {
+  position: relative;
+  padding: 12px 14px 12px 34px !important; /* spazio per il dot */
+  margin: 10px 0 !important;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Dot moderno (invece della barretta) */
 body > ul > li::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 10px;
-  bottom: 10px;
-  width: 4px;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--button-grad-1), var(--button-grad-2));
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
 }
+
