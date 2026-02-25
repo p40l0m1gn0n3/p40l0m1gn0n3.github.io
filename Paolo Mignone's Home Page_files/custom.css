@@ -54,7 +54,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0 !important;
-  padding: 10px clamp(14px, 3vw, 34px) 32px !important;
+  padding: 24px clamp(14px, 3vw, 34px) 48px !important;
   max-width: 1480px;
   margin-inline: auto !important;
   color: var(--text) !important;
@@ -119,26 +119,26 @@ body > table:first-of-type {
   background: linear-gradient(180deg, var(--panel), var(--panel-2));
   box-shadow: var(--shadow);
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 22px;
   backdrop-filter: blur(8px);
 }
 
 body > table:first-of-type > tbody {
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 18px;
 }
 
 body > table:body > table:first-of-type > tbody > tr {
   display: grid;
   grid-template-columns: minmax(240px, 300px) 1fr;
-  gap: 12px;
+  gap: 18px;
   align-items: start;
 }
 
 body > table:first-of-type > tbody > tr + tr {
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 
@@ -524,7 +524,7 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button 
 
 /* Box titolo/interessi: centro verticale del contenuto */
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-  min-height: 170px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -546,32 +546,4 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child {
 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
   margin-bottom: 8px !important;
-}
-
-/* Rimuove i primi BR legacy in cima alla pagina (causano il grande vuoto sopra) */
-body > br:nth-of-type(-n+12) {
-  display: none !important;
-}
-
-/* Card destra (bottoni): layout compatto e centrato */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  text-align: center;
-}
-
-/* Nasconde i <br> legacy tra i bottoni */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > br {
-  display: none !important;
-}
-
-/* Bottoni leggermente più compatti ma ampi */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-  width: min(100%, 500px) !important;
-  min-height: 42px;
-  padding: 8px 14px !important;
-  margin: 0 auto !important;
 }
