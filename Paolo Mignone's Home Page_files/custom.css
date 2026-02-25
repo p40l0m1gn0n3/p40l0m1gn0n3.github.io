@@ -549,31 +549,31 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
 }
 
 /* Keyword/roles sotto il nome (colonna sinistra) */
-/* ===== Profile keywords: marker + hanging indent ===== */
+/* ===== Profile keywords: dot allineato e wrap chiaro ===== */
 .profile-keywords {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-/* ogni voce ha un dot; se va a capo resta allineata come *stessa* voce */
 .profile-keywords > div {
-  position: relative;
-  padding-left: 14px;     /* spazio per dot */
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   line-height: 1.25;
 }
 
+/* il dot diventa "prima colonna" e resta allineato anche quando il testo va a capo */
 .profile-keywords > div::before {
   content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
   width: 6px;
   height: 6px;
   border-radius: 999px;
   background: var(--link);
   opacity: 0.9;
+  margin-top: 0.55em; /* <-- qui l'allineamento fine */
+  flex: 0 0 6px;
 }
 
 /* Riduce spazio verticale della colonna bottoni (desktop) */
@@ -685,3 +685,28 @@ body > ul > li::before {
   background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
 }
 
+/* ===== Home buttons: width più elegante (non "a banner") ===== */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
+  width: min(100%, 430px) !important;  /* prova 430–460 */
+}
+
+/* ===== Hero: tipografia coerente per Research Interests ===== */
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* etichetta "Research Interests" come label moderna */
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.06);
+  margin-bottom: 8px;
+}
