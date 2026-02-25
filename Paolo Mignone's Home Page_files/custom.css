@@ -24,7 +24,7 @@
   --hr: linear-gradient(90deg, transparent, rgba(37,99,235,0.25), transparent);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --bg: #020617;
     --bg-accent: radial-gradient(circle at 10% 10%, rgba(59,130,246,0.18), transparent 45%),
@@ -48,7 +48,7 @@
     --hr: linear-gradient(90deg, transparent, rgba(147,197,253,0.25), transparent);
   }
 }
-
+*/
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -149,19 +149,27 @@ body > table:first-of-type > tbody > tr > td {
 }
 
 /* Profile image */
+/* Profile image container */
 body > table:first-of-type > tbody > tr:first-child > td:first-child {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: var(--shadow-soft);
 }
 
+/* Profile image */
 body > table:first-of-type > tbody > tr:first-child > td:first-child > img {
   width: min(100%, 240px) !important;
   height: auto;
-  border-radius: 18px !important;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-soft) !important;
+  border-radius: 14px !important;
+  border: 0 !important;
+  box-shadow: none !important;
   object-fit: cover;
+  background: #ffffff;
 }
 
 /* Title + interests card */
@@ -174,18 +182,19 @@ body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > 
 }
 
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-  background: rgba(255,255,255,0.55);
+  background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 16px 18px !important;
   text-align: left !important;
 }
+/*
 @media (prefers-color-scheme: dark) {
   body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
     background: rgba(15,23,42,0.45);
   }
 }
-
+*/
 h1, h2, h3, h4, h5, h6 {
   color: var(--text);
   font-weight: 800;
@@ -222,18 +231,19 @@ h4 {
 /* Second hero row: left profile details + right buttons */
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  background: rgba(255,255,255,0.45);
+  background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 12px 14px;
 }
+/*
 @media (prefers-color-scheme: dark) {
   body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
   body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
     background: rgba(15,23,42,0.38);
   }
 }
-
+*/
 /* Make nested tables in hero behave like normal layout blocks */
 body > table:first-of-type table {
   width: 100%;
@@ -267,12 +277,13 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child a img {
   box-shadow: var(--shadow-soft);
   object-fit: contain;
 }
+/*
 @media (prefers-color-scheme: dark) {
   body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child a img {
     background: rgba(255,255,255,0.92);
   }
 }
-
+*/
 /* CTA buttons */
 .button {
   display: inline-flex !important;
@@ -323,12 +334,13 @@ body > ul {
   border-radius: 16px;
   box-shadow: var(--shadow-soft);
 }
+/*
 @media (prefers-color-scheme: dark) {
   body > ul {
     background: linear-gradient(180deg, rgba(15,23,42,0.55), rgba(15,23,42,0.42));
   }
 }
-
+*/
 ul {
   list-style-position: outside;
 }
@@ -369,11 +381,13 @@ a[href*="#top"] {
   box-shadow: var(--shadow-soft);
   text-decoration: none !important;
 }
+/*
 @media (prefers-color-scheme: dark) {
   a[href*="#top"] {
     background: rgba(15,23,42,0.55);
   }
 }
+*/
 a[href*="#top"]:hover {
   transform: translateY(-1px);
   text-decoration: none !important;
@@ -397,12 +411,13 @@ div[align="left"][style*="FONT-SIZE"] {
   color: var(--muted);
   background: rgba(255,255,255,0.45);
 }
+/*
 @media (prefers-color-scheme: dark) {
   div[align="left"][style*="FONT-SIZE"] {
     background: rgba(15,23,42,0.34);
   }
 }
-
+*/
 /* Make long links wrap gracefully */
 td, li, p, div {
   overflow-wrap: anywhere;
@@ -492,4 +507,8 @@ h2 + br, h3 + br, h4 + br { display: none; }
     border: 1px solid #ddd !important;
     background: #fff !important;
   }
+}
+
+html, body {
+  color-scheme: light !important;
 }
