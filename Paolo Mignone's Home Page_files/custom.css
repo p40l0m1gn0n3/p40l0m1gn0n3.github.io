@@ -286,14 +286,14 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child a img {
 */
 /* CTA buttons */
 .button {
-  display: inline-flex !important;
+  display: flex !important;              /* prima era inline-flex */
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: min(100%, 360px) !important;
   min-height: 46px;
   padding: 10px 16px !important;
-  margin: 0 !important;
+  margin: 0 auto !important;             /* centra il bottone */
   border-radius: 12px !important;
   border: 1px solid rgba(255,255,255,0.25);
   background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2)) !important;
@@ -511,4 +511,13 @@ h2 + br, h3 + br, h4 + br { display: none; }
 
 html, body {
   color-scheme: light !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  text-align: center;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
