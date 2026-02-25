@@ -737,3 +737,40 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
   align-self: flex-start;
 }
+
+/* ===== Section headings: stile coerente con UI (non pacchiano) ===== */
+h2 {
+  position: relative;
+  display: inline-block;
+  padding: 10px 14px 10px 14px;
+  border-radius: 14px;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.10);
+}
+
+/* piccolo accento a sinistra */
+h2::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
+  opacity: 0.9;
+}
+
+/* spazio per il dot */
+h2 {
+  padding-left: 26px;
+}
+
+/* separatore coerente col resto (·) */
+.sep::before {
+  content: " · ";
+  color: var(--muted);
+  opacity: 0.9;
+  font-weight: 600;
+}
