@@ -584,3 +584,33 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) table td 
     min-height: 40px;
   }
 }
+
+/* ===== Global lists: dot custom (solo liste principali) ===== */
+body > ul {
+  list-style: none !important;
+  padding-left: 0 !important;  /* perché usiamo il dot custom */
+}
+
+body > ul > li {
+  position: relative;
+  padding-left: 18px;
+  margin: 0 0 12px 0 !important;
+}
+
+body > ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--link);
+}
+
+/* liste annidate restano standard */
+body > ul ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin-top: 8px;
+}
