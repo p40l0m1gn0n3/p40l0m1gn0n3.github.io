@@ -614,3 +614,36 @@ body > ul ul {
   padding-left: 22px;
   margin-top: 8px;
 }
+
+/* ===== Modern list style (no bullets) ===== */
+body > ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 10px 0 18px 0 !important;
+  background: none !important;         /* togliamo la vecchia "card ul" */
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ogni item diventa una mini-card */
+body > ul > li {
+  position: relative;
+  padding: 12px 14px 12px 14px !important;
+  margin: 10px 0 !important;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+/* accento coerente con bottoni/link */
+body > ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--button-grad-1), var(--button-grad-2));
+}
