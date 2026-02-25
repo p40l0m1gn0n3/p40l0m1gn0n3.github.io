@@ -548,3 +548,14 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
   margin-bottom: 8px !important;
 }
 
+/* Keyword/roles sotto il nome (colonna sinistra) */
+.profile-keywords {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-keywords > div {
+  line-height: 1.2;
+}
