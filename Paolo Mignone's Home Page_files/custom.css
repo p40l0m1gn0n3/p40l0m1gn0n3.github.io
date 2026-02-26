@@ -549,23 +549,40 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
   gap: 6px;
 }
 
+/* Keyword a sinistra: dot centrato verticalmente rispetto al blocco testo */
 .profile-keywords > div {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  position: relative;
+  padding-left: 16px;          /* spazio per il dot */
+  border-radius: 10px;
   line-height: 1.25;
+  transition: background .15s ease, color .15s ease;
 }
 
-/* il dot diventa "prima colonna" e resta allineato anche quando il testo va a capo */
+/* il testo lo lasciamo normale */
+.profile-keywords > div {
+  display: block;              /* <- importante: niente flex qui */
+}
+
+/* Dot centrato sul blocco */
 .profile-keywords > div::before {
   content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: var(--link);
-  opacity: 0.9;
-  margin-top: 0.62em;   /* più centrato sulla prima riga */
-  flex: 0 0 6px;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.profile-keywords > div:hover {
+  background: rgba(37, 99, 235, 0.06);
+  color: var(--link-hover);
+}
+
+.profile-keywords > div:hover::before {
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
 }
 
 /* Riduce spazio verticale della colonna bottoni (desktop) */
@@ -581,7 +598,7 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) table td 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
   min-height: 42px;
   padding: 8px 14px !important;
-  width: min(100%, 410px) !important;  /* se vuoi più corti */
+  width: min(100%, 300px) !important;
 }
 
 /* Mobile: compatto SOLO per i bottoni della home */
@@ -615,8 +632,8 @@ body > ul > li::before {
   content: "";
   position: absolute;
   left: 14px;
-  top: 0.62em;          /* allineato alla prima riga */
-  transform: none;
+  top: 50%;
+  transform: translateY(-50%);
   width: 6px;
   height: 6px;
   border-radius: 999px;
@@ -625,10 +642,6 @@ body > ul > li::before {
 
 body > ul > li:hover::before {
   background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-  width: min(100%, 300px) !important; /* <- size tasti */
 }
 
 /* ===== Hero: tipografia coerente per Research Interests ===== */
@@ -657,26 +670,6 @@ body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
   margin: 6px 0 10px 0;
 }
 
-/* ===== Modern list style (dot, no classic bullets) ===== */
-body > ul {
-  list-style: none !important;
-  padding-left: 0 !important;
-  margin: 10px 0 18px 0 !important;
-  background: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-body > ul > li {
-  position: relative;
-  padding: 12px 14px 12px 34px !important;
-  margin: 10px 0 !important;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: var(--shadow-soft);
-}
-
 /* ===== Research Interests: tags con separatore · e hover sobrio ===== */
 .ri-tags {
   margin-top: 8px;
@@ -702,35 +695,6 @@ body > ul > li {
   border-bottom-color: rgba(37, 99, 235, 0.35);
 }
 
-/* ===== Left keywords: dot sobrio + hover elegante ===== */
-.profile-keywords > div {
-  padding: 2px 6px;
-  border-radius: 10px;
-  transition: background .15s ease, color .15s ease;
-}
-
-.profile-keywords > div::before {
-  background: rgba(15, 23, 42, 0.28);   /* dot soft (grigio) */
-}
-
-.profile-keywords > div:hover {
-  background: rgba(37, 99, 235, 0.06); /* highlight leggero */
-  color: var(--link-hover);
-}
-
-.profile-keywords > div:hover::before {
-  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
-}
-
-/* ===== Cards: più contrasto (bianco su bianco -> leggibile) ===== */
-body > table:first-of-type,
-body > table:first-of-type > tbody > tr:first-child > td:first-child,
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  background: #fbfcff !important;                 /* bianco “tinto” */
-  border-color: rgba(15, 23, 42, 0.12) !important;/* bordo più percepibile */
-}
 
 /* Badge Research Interests non full-width */
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
@@ -793,17 +757,6 @@ body > h4 {
   font-weight: 600;
 }
 
-/* ===== Cards: più distinguibili (leggero boost contrasto) ===== */
-body > table:first-of-type,
-body > table:first-of-type > tbody > tr:first-child > td:first-child,
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2),
-body > ul > li {
-  background: #f8fbff !important;                 /* più “tinto” di prima */
-  border-color: rgba(15, 23, 42, 0.14) !important;
-}
-
 /* ombra un filo più presente */
 body > ul > li,
 body > table:first-of-type > tbody > tr:first-child > td:first-child,
@@ -811,4 +764,28 @@ body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
   box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+/* Bordi e ombre più leggibili (senza diventare “pesanti”) */
+body > table:first-of-type,
+body > table:first-of-type > tbody > tr:first-child > td:first-child,
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2),
+body > ul > li {
+  border-color: rgba(15, 23, 42, 0.18) !important; /* più visibile */
+}
+
+body > table:first-of-type,
+body > ul > li {
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+/* background un filo più distinto */
+body > ul > li,
+body > table:first-of-type > tbody > tr:first-child > td:first-child,
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  background: #f7fbff !important;
 }
