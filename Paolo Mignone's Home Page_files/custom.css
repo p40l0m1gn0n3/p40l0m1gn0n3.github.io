@@ -564,7 +564,7 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
   border-radius: 999px;
   background: var(--link);
   opacity: 0.9;
-  margin-top: 0.55em; /* <-- qui l'allineamento fine */
+  margin-top: 0.62em;   /* più centrato sulla prima riga */
   flex: 0 0 6px;
 }
 
@@ -615,11 +615,12 @@ body > ul > li::before {
   content: "";
   position: absolute;
   left: 14px;
-  top: 0.75em;               /* allineamento più “testo-like” */
+  top: 0.62em;          /* allineato alla prima riga */
+  transform: none;
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.28); /* sobrio come keyword */
+  background: rgba(15, 23, 42, 0.28);
 }
 
 body > ul > li:hover::before {
@@ -627,7 +628,7 @@ body > ul > li:hover::before {
 }
 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-  width: min(100%, 410px) !important;
+  width: min(100%, 300px) !important; /* <- size tasti */
 }
 
 /* ===== Hero: tipografia coerente per Research Interests ===== */
@@ -792,4 +793,22 @@ body > h4 {
   font-weight: 600;
 }
 
+/* ===== Cards: più distinguibili (leggero boost contrasto) ===== */
+body > table:first-of-type,
+body > table:first-of-type > tbody > tr:first-child > td:first-child,
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2),
+body > ul > li {
+  background: #f8fbff !important;                 /* più “tinto” di prima */
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
 
+/* ombra un filo più presente */
+body > ul > li,
+body > table:first-of-type > tbody > tr:first-child > td:first-child,
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
