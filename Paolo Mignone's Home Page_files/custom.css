@@ -137,8 +137,8 @@ body > table:first-of-type > tbody > tr {
 }
 
 body > table:first-of-type > tbody > tr + tr {
-  margin-top: 14px;
-  padding-top: 14px;
+  margin-top: 10px;
+  padding-top: 10px;
   border-top: 1px solid var(--border);
 }
 
@@ -587,18 +587,18 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
 
 /* Riduce spazio verticale della colonna bottoni (desktop) */
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  padding: 8px 12px !important;
+  padding: 6px 10px !important;
 }
 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) table td {
-  padding: 10px 8px !important; /* sovrascrive il padding inline 20px 10px */
+  padding: 4px 8px !important; /* molto più compatto per 5 bottoni */
 }
 
 /* Home buttons: override SOLO nella colonna destra della hero */
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-  min-height: 42px;
-  padding: 8px 14px !important;
-  width: min(100%, 300px) !important;
+  min-height: 36px;
+  padding: 6px 12px !important;
+  width: min(100%, 280px) !important;  /* ~ -1/4 rispetto a 300 */
 }
 
 /* Mobile: compatto SOLO per i bottoni della home */
@@ -789,3 +789,4 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
   background: #f7fbff !important;
 }
+
