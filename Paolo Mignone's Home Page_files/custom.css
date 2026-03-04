@@ -838,3 +838,10 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table >
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr > td {
   padding: 0 !important;
 }
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
+  width: clamp(260px, 42vw, 340px) !important;
+  flex: 0 0 clamp(260px, 42vw, 340px) !important;
+
+  min-height: 38px;             /* opzionale: tutti uguali in altezza */
+}
