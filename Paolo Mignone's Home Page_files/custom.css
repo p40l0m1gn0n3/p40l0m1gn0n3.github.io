@@ -811,21 +811,49 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
 
 /* ===== Hero buttons: distribute vertically to fill the box ===== */
 
-/* La card destra diventa un contenitore flessibile */
+/* ===== Hero buttons: stable spacing on desktop + mobile ===== */
+
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
   display: flex;
   flex-direction: column;
 }
 
-/* Trasformo la tabella interna (bottoni) in colonna flex che occupa tutta l’altezza */
+/* tabella bottoni come colonna flex con GAP elastico (mai zero) */
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody {
   display: flex;
   flex-direction: column;
   flex: 1;
   height: 100%;
-  justify-content: space-evenly;   /* <-- qui nasce l’adattamento dinamico */
-  padding: 6px 0;                  /* margine sopra/sotto uguale */
+
+  justify-content: center;                 /* non dipende dall'altezza */
+  gap: clamp(10px, 2.2vh, 18px);           /* spacing dinamico ma stabile */
+  padding: clamp(8px, 2vh, 14px) 0;        /* margine sopra/sotto uguale */
+}
+
+/* ogni riga centra il bottone */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr {
+  display: flex;
+  justify-content: center;
+}
+
+/* annulla padding inline dei td */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr > td {
+  padding: 0 !important;
+}
+
+/* MOBILE: bottoni full-width + gap fisso leggibile */
+@media (max-width: 980px) {
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table,
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody {
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
 }
 
 /* Ogni riga centra il bottone orizzontalmente */
@@ -845,3 +873,4 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button 
 
   min-height: 38px;             /* opzionale: tutti uguali in altezza */
 }
+
