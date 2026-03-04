@@ -809,5 +809,32 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
   background: #f7fbff !important;
 }
 
+/* ===== Hero buttons: distribute vertically to fill the box ===== */
 
+/* La card destra diventa un contenitore flessibile */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+}
 
+/* Trasformo la tabella interna (bottoni) in colonna flex che occupa tutta l’altezza */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  justify-content: space-evenly;   /* <-- qui nasce l’adattamento dinamico */
+  padding: 6px 0;                  /* margine sopra/sotto uguale */
+}
+
+/* Ogni riga centra il bottone orizzontalmente */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr {
+  display: flex;
+  justify-content: center;
+}
+
+/* Disattivo il padding inline dei TD (20px 10px) e lascio gestire tutto a flex */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr > td {
+  padding: 0 !important;
+}
