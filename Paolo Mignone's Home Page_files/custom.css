@@ -129,6 +129,14 @@ body > table:first-of-type > tbody {
   padding: 18px;
 }
 
+/* <<< REGOLA MANCANTE: layout a 2 colonne per ogni riga della HERO >>> */
+body > table:first-of-type > tbody > tr {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
 /* 2ª riga della hero: le due colonne devono avere la stessa altezza */
 body > table:first-of-type > tbody > tr:nth-child(2) {
   align-items: stretch !important;
@@ -800,5 +808,6 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
   background: #f7fbff !important;
 }
+
 
 
