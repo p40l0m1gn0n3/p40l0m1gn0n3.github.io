@@ -129,11 +129,22 @@ body > table:first-of-type > tbody {
   padding: 18px;
 }
 
-body > table:first-of-type > tbody > tr {
-  display: grid;
-  grid-template-columns: minmax(240px, 300px) 1fr;
-  gap: 18px;
-  align-items: start;
+/* 2ª riga della hero: le due colonne devono avere la stessa altezza */
+body > table:first-of-type > tbody > tr:nth-child(2) {
+  align-items: stretch !important;
+}
+
+/* Card sinistra (keywords + social): usa la tabella interna per spingere i social in basso */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table {
+  height: 100%;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:first-child {
+  height: 100%;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:first-child td {
+  vertical-align: top;
 }
 
 body > table:first-of-type > tbody > tr + tr {
@@ -789,4 +800,5 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
   background: #f7fbff !important;
 }
+
 
