@@ -874,3 +874,56 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button 
   min-height: 38px;             /* opzionale: tutti uguali in altezza */
 }
 
+/* =========================================================
+   FINAL OVERRIDES — HERO BUTTONS (incolla in fondo al file)
+   ========================================================= */
+
+/* 1) Nella seconda riga della hero, fai “stretch” così i 2 box hanno stessa altezza */
+body > table:first-of-type > tbody > tr:nth-child(2) {
+  align-items: stretch !important;
+}
+
+/* 2) Il box dei bottoni diventa un contenitore flex */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  display: flex !important;
+}
+
+/* 3) La tabella dei bottoni riempie l’altezza e distribuisce lo spazio sopra/sotto */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions,
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important; /* <-- questo elimina il “vuoto sotto” */
+  align-items: center !important;
+  flex: 1 1 auto !important;
+
+  padding: 10px 0 !important;  /* stesso “respiro” sopra e sotto */
+  gap: 12px !important;        /* fallback quando lo spazio è poco */
+}
+
+/* 4) togli padding/margini residui delle celle */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions td {
+  padding: 0 !important;
+}
+
+/* 5) bottoni: stessa dimensione, responsive */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions a.button {
+  width: clamp(260px, 42vw, 340px) !important;
+  min-height: 42px !important;
+  padding: 8px 14px !important;
+}
+
+/* MOBILE: niente “space-between” (sennò fa gap enormi), ma gap fisso */
+@media (max-width: 980px) {
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions,
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    gap: 12px !important;
+  }
+
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions a.button {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+}
