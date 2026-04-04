@@ -459,6 +459,22 @@ body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
   border-bottom-color: rgba(37,99,235,0.35);
 }
 
+/* research/application in 2 columns on desktop */
+.ri-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 2px;
+}
+
+.ri-col {
+  min-width: 0;
+}
+
+.ri-col .ri-group {
+  margin-top: 2px;
+}
+
 /* separators */
 .sep::before {
   content: " · ";
@@ -565,16 +581,22 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile
 
   body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
     min-height: auto;
-    text-align: center !important;
+    text-align: left !important;
     padding: 10px 12px !important;
   }
 
   h1 {
-    text-align: center !important;
+    text-align: left !important;
   }
 
   body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
-    align-self: center;
+    align-self: flex-start;
+  }
+
+  /* research/application collapse on mobile */
+  .ri-columns {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child a img {
@@ -586,16 +608,17 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile
     padding: 10px !important;
   }
 
+  /* default mobile: 1 column */
   body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions,
   body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
     width: 100% !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: 1fr !important;
     gap: 10px !important;
     padding: 0 !important;
   }
 
   body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile {
-    min-height: 58px !important;
+    min-height: 56px !important;
     padding: 0 12px !important;
     border-radius: 14px !important;
     flex-direction: row !important;
@@ -605,16 +628,25 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile
 
   body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile .material-icons {
     font-size: 20px !important;
+    flex: 0 0 auto;
   }
 
   body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile .nav-text {
     font-size: 13px;
     text-align: left;
+    white-space: nowrap;
   }
 
   body > ul {
     padding: 12px 12px 12px 18px !important;
     border-radius: 14px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 980px) {
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions,
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
