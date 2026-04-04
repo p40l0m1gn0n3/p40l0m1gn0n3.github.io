@@ -1,22 +1,22 @@
-/* ===== Modern visual refactor for legacy homepage (content-preserving) ===== */
+/* ===== Cleaned stylesheet for Paolo Mignone's homepage ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   --bg: #f5f7fb;
-  --bg-accent: radial-gradient(circle at 10% 10%, rgba(59,130,246,0.10), transparent 45%),
-               radial-gradient(circle at 90% 20%, rgba(99,102,241,0.10), transparent 40%),
-               radial-gradient(circle at 50% 100%, rgba(14,165,233,0.10), transparent 35%);
-  --panel: rgba(255,255,255,0.9);
-  --panel-2: #ffffff;
+  --bg-accent:
+    radial-gradient(circle at 10% 10%, rgba(59,130,246,0.10), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(99,102,241,0.10), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(14,165,233,0.10), transparent 35%);
+  --panel: #f7fbff;
+  --panel-strong: #ffffff;
   --text: #0f172a;
   --muted: #475569;
-  --border: rgba(15,23,42,0.09);
-  --shadow: 0 18px 45px rgba(15, 23, 42, 0.08), 0 4px 14px rgba(15, 23, 42, 0.04);
-  --shadow-soft: 0 8px 20px rgba(15, 23, 42, 0.05);
+  --border: rgba(15, 23, 42, 0.14);
+  --border-strong: rgba(15, 23, 42, 0.18);
+  --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 10px 26px rgba(15, 23, 42, 0.06);
   --link: #2563eb;
   --link-hover: #1d4ed8;
-  --chip: #eef2ff;
-  --chip-border: #dbeafe;
   --button-grad-1: #2563eb;
   --button-grad-2: #1e40af;
   --button-grad-1-hover: #1d4ed8;
@@ -24,33 +24,9 @@
   --hr: linear-gradient(90deg, transparent, rgba(37,99,235,0.25), transparent);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #020617;
-    --bg-accent: radial-gradient(circle at 10% 10%, rgba(59,130,246,0.18), transparent 45%),
-                 radial-gradient(circle at 90% 20%, rgba(99,102,241,0.15), transparent 40%),
-                 radial-gradient(circle at 50% 100%, rgba(14,165,233,0.14), transparent 35%);
-    --panel: rgba(15,23,42,0.78);
-    --panel-2: rgba(15,23,42,0.96);
-    --text: #e5e7eb;
-    --muted: #cbd5e1;
-    --border: rgba(148,163,184,0.20);
-    --shadow: 0 18px 45px rgba(0,0,0,0.35), 0 4px 14px rgba(0,0,0,0.25);
-    --shadow-soft: 0 10px 22px rgba(0,0,0,0.22);
-    --link: #93c5fd;
-    --link-hover: #bfdbfe;
-    --chip: rgba(37,99,235,0.13);
-    --chip-border: rgba(96,165,250,0.30);
-    --button-grad-1: #2563eb;
-    --button-grad-2: #1e3a8a;
-    --button-grad-1-hover: #3b82f6;
-    --button-grad-2-hover: #1d4ed8;
-    --hr: linear-gradient(90deg, transparent, rgba(147,197,253,0.25), transparent);
-  }
-}
-*/
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html, body { color-scheme: light !important; }
 
 body {
   margin: 0 !important;
@@ -59,15 +35,19 @@ body {
   margin-inline: auto !important;
   color: var(--text) !important;
   background: var(--bg-accent), var(--bg) !important;
-  font-family: 'Inter', 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
 }
 
-/* Neutralize old/deprecated styles */
-body[bgcolor], body[text] { background: var(--bg-accent), var(--bg) !important; color: var(--text) !important; }
+body[bgcolor], body[text] {
+  background: var(--bg-accent), var(--bg) !important;
+  color: var(--text) !important;
+}
+
 img[src*="linea1.gif"] { display: none !important; }
 br + hr, hr + br { display: none; }
+body > p:empty { display: none; }
 
 table, tr, td {
   margin: 0;
@@ -79,7 +59,7 @@ a {
   color: var(--link) !important;
   text-decoration: none !important;
   font-weight: 600;
-  transition: color .18s ease, opacity .18s ease, transform .18s ease, box-shadow .18s ease;
+  transition: color .18s ease, opacity .18s ease, transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
 
 a:hover {
@@ -92,15 +72,14 @@ a img {
   box-shadow: none !important;
   filter: none !important;
   opacity: 1 !important;
-  transition: transform .15s ease, box-shadow .18s ease, opacity .18s ease;
+  transition: transform .15s ease, opacity .18s ease;
 }
 
 a:hover img {
   transform: translateY(-1px);
-  opacity: 0.95 !important;
+  opacity: .95 !important;
 }
 
-/* Global separators and spacing */
 hr {
   border: 0;
   height: 1px;
@@ -108,15 +87,13 @@ hr {
   background: var(--hr);
 }
 
-body > p:empty { display: none; }
-
-/* ===== HERO (first big table) ===== */
+/* ===== HERO ===== */
 body > table:first-of-type {
   width: 100% !important;
   display: block;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: 24px;
-  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  background: linear-gradient(180deg, var(--panel), var(--panel-strong));
   box-shadow: var(--shadow);
   overflow: hidden;
   margin-bottom: 22px;
@@ -129,30 +106,11 @@ body > table:first-of-type > tbody {
   padding: 18px;
 }
 
-/* <<< REGOLA MANCANTE: layout a 2 colonne per ogni riga della HERO >>> */
 body > table:first-of-type > tbody > tr {
   display: grid;
   grid-template-columns: minmax(240px, 300px) 1fr;
   gap: 18px;
   align-items: start;
-}
-
-/* 2ª riga della hero: le due colonne devono avere la stessa altezza */
-body > table:first-of-type > tbody > tr:nth-child(2) {
-  align-items: stretch !important;
-}
-
-/* Card sinistra (keywords + social): usa la tabella interna per spingere i social in basso */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table {
-  height: 100%;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:first-child {
-  height: 100%;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:first-child td {
-  vertical-align: top;
 }
 
 body > table:first-of-type > tbody > tr + tr {
@@ -161,26 +119,27 @@ body > table:first-of-type > tbody > tr + tr {
   border-top: 1px solid var(--border);
 }
 
+body > table:first-of-type > tbody > tr:nth-child(2) {
+  align-items: stretch !important;
+}
+
 body > table:first-of-type > tbody > tr > td {
   display: block;
   width: auto !important;
   max-width: none !important;
 }
 
-/* Profile image */
-/* Profile image container */
 body > table:first-of-type > tbody > tr:first-child > td:first-child {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: var(--panel-strong);
+  border: 1px solid var(--border-strong);
   border-radius: 18px;
   padding: 10px;
   box-shadow: var(--shadow-soft);
 }
 
-/* Profile image */
 body > table:first-of-type > tbody > tr:first-child > td:first-child > img {
   width: min(100%, 240px) !important;
   height: auto;
@@ -191,7 +150,6 @@ body > table:first-of-type > tbody > tr:first-child > td:first-child > img {
   background: #ffffff;
 }
 
-/* Title + interests card */
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table,
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody,
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr,
@@ -201,84 +159,29 @@ body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > 
 }
 
 body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid var(--border-strong);
   border-radius: 18px;
   padding: 16px 18px !important;
   text-align: left !important;
-}
-/*
-@media (prefers-color-scheme: dark) {
-  body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-    background: rgba(15,23,42,0.45);
-  }
-}
-*/
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 0;
+  box-shadow: var(--shadow-soft);
 }
 
-h1 {
-  font-size: clamp(1.45rem, 2.7vw, 2.25rem) !important;
-  margin-bottom: 10px !important;
-  line-height: 1.15;
-}
-
-h2 {
-  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
-  margin: 26px 0 10px !important;
-
-  display: inline-flex;
-  align-items: center;
-
-  padding: 8px 14px;
-  border-radius: 999px;
-
-  color: #1e40af;
-  background: rgba(37, 99, 235, 0.10);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
-}
-
-h3 {
-  font-size: clamp(1.03rem, 1.6vw, 1.35rem);
-  margin: 18px 0 8px !important;
-}
-
-h4 {
-  font-size: clamp(0.96rem, 1.25vw, 1.1rem);
-  margin: 14px 0 6px !important;
-  color: var(--muted);
-}
-
-/* Second hero row: left profile details + right buttons */
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
 body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: var(--panel);
+  border: 1px solid var(--border-strong);
   border-radius: 18px;
-  padding: 12px 14px;
-}
-/*
-@media (prefers-color-scheme: dark) {
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-    background: rgba(15,23,42,0.38);
-  }
-}
-*/
-/* Make nested tables in hero behave like normal layout blocks */
-body > table:first-of-type table {
-  width: 100%;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-soft);
 }
 
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table {
-  border-collapse: separate;
-  border-spacing: 0;
+body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child {
+  line-height: 1.35;
 }
 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:first-child td {
@@ -287,10 +190,10 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:f
 
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
   margin-top: 0 !important;
-  margin-bottom: 6px !important;
+  margin-bottom: 8px !important;
 }
 
-/* Social icons row */
+/* social icons */
 body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:nth-child(2) td {
   padding: 8px 7px 0 0 !important;
 }
@@ -304,47 +207,58 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child a img {
   box-shadow: var(--shadow-soft);
   object-fit: contain;
 }
-/*
-@media (prefers-color-scheme: dark) {
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child a img {
-    background: rgba(255,255,255,0.92);
-  }
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
-*/
-/* CTA buttons */
-.button {
-  display: flex !important;              /* prima era inline-flex */
+
+h1 {
+  font-size: clamp(1.45rem, 2.7vw, 2.25rem) !important;
+  margin-bottom: 12px !important;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  margin: 26px 0 10px !important;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: min(100%, 520px) !important;
-  min-height: 46px;
-  padding: 10px 16px !important;
-  margin: 0 auto !important;             /* centra il bottone */
-  border-radius: 12px !important;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2)) !important;
-  color: #fff !important;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.2;
-  box-shadow: 0 8px 20px rgba(37,99,235,0.25);
-  text-decoration: none !important;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #1e40af;
+  background: rgba(37, 99, 235, 0.10);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  box-shadow: none;
 }
 
-.button:hover {
-  background: linear-gradient(135deg, var(--button-grad-1-hover), var(--button-grad-2-hover)) !important;
-  box-shadow: 0 10px 22px rgba(37,99,235,0.30);
-  transform: translateY(-1px);
-  text-decoration: none !important;
+h3 {
+  font-size: clamp(1.03rem, 1.6vw, 1.35rem);
+  margin: 26px 0 10px !important;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: #1e40af;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.16);
 }
 
-.button .material-icons {
-  font-size: 18px;
-  line-height: 1;
+h4 {
+  font-size: clamp(0.96rem, 1.25vw, 1.1rem);
+  margin: 14px 0 10px !important;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.10);
 }
 
-/* Generic content sections */
 body > h2,
 body > h3,
 body > h4,
@@ -352,6 +266,154 @@ body > a[name] {
   scroll-margin-top: 18px;
 }
 
+/* hero labels */
+body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1e40af;
+  background: rgba(37, 99, 235, 0.10);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  padding: 6px 10px;
+  border-radius: 999px;
+  margin: 6px 0 10px 0;
+}
+
+/* research tags */
+.ri-tags {
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+.ri-tags .tag {
+  color: var(--text);
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.ri-tags .tag + .tag::before {
+  content: " · ";
+  color: var(--muted);
+  opacity: .9;
+}
+
+.ri-tags .tag:hover {
+  color: var(--link-hover);
+  border-bottom-color: rgba(37, 99, 235, 0.35);
+}
+
+/* profile keywords */
+.profile-keywords {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-keywords > div {
+  position: relative;
+  display: block;
+  padding-left: 18px;
+  border-radius: 10px;
+  line-height: 1.25;
+  transition: background .15s ease, color .15s ease;
+}
+
+.profile-keywords > div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.profile-keywords > div:hover {
+  background: rgba(37, 99, 235, 0.06);
+  color: var(--link-hover);
+}
+
+.profile-keywords > div:hover::before {
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
+}
+
+/* ===== HERO ACTIONS ===== */
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions {
+  width: min(100%, 460px) !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(110px, 140px));
+  justify-content: center !important;
+  align-content: center !important;
+  gap: 14px !important;
+  padding: 6px 0 !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody > tr {
+  display: contents !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody > tr > td {
+  padding: 0 !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile {
+  width: 100% !important;
+  min-height: 92px !important;
+  padding: 14px 10px !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2)) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.22);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile .material-icons {
+  font-size: 26px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile .nav-text {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+}
+
+body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(37,99,235,0.28);
+  filter: brightness(1.03);
+  text-decoration: none !important;
+}
+
+/* ===== LISTS ===== */
 ul {
   list-style-position: outside;
 }
@@ -362,25 +424,58 @@ li {
   color: var(--text);
 }
 
-body > ul > li:last-child { margin-bottom: 0 !important; }
-
-li i {
-  color: var(--muted);
+body > ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 10px 0 18px 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
-/* Improve readability of dense sections */
+body > ul > li {
+  position: relative;
+  padding: 12px 14px 12px 34px !important;
+  margin: 10px 0 !important;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: var(--panel-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+body > ul > li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+body > ul > li:hover::before {
+  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
+}
+
+body > ul > li:last-child { margin-bottom: 0 !important; }
+
+li i { color: var(--muted); }
+
 body > h3 + ul,
 body > h4 + ul,
 body > h2 + ul {
   margin-top: 8px !important;
 }
 
-body > h4 {
-  padding: 6px 4px 0;
-  margin-top: 8px !important;
+.sep::before {
+  content: " · ";
+  color: var(--muted);
+  opacity: .9;
+  font-weight: 600;
 }
 
-/* "Top of this page" links */
 a[href*="#top"] {
   display: inline-flex;
   align-items: center;
@@ -392,19 +487,12 @@ a[href*="#top"] {
   box-shadow: var(--shadow-soft);
   text-decoration: none !important;
 }
-/*
-@media (prefers-color-scheme: dark) {
-  a[href*="#top"] {
-    background: rgba(15,23,42,0.55);
-  }
-}
-*/
+
 a[href*="#top"]:hover {
   transform: translateY(-1px);
   text-decoration: none !important;
 }
 
-/* PDF/download icon links inside publications/software */
 img[src*="pdf.png"],
 img[src*="download.jpg"] {
   width: 18px !important;
@@ -413,7 +501,6 @@ img[src*="download.jpg"] {
   vertical-align: middle;
 }
 
-/* Last update footer */
 div[align="left"][style*="FONT-SIZE"] {
   margin-top: 18px !important;
   padding: 10px 12px;
@@ -422,23 +509,15 @@ div[align="left"][style*="FONT-SIZE"] {
   color: var(--muted);
   background: rgba(255,255,255,0.45);
 }
-/*
-@media (prefers-color-scheme: dark) {
-  div[align="left"][style*="FONT-SIZE"] {
-    background: rgba(15,23,42,0.34);
-  }
-}
-*/
-/* Make long links wrap gracefully */
+
 td, li, p, div {
   overflow-wrap: anywhere;
   word-break: normal;
 }
 
-/* Fix excessive legacy BR spacing */
 h2 + br, h3 + br, h4 + br { display: none; }
 
-/* Mobile layout */
+/* ===== MOBILE ===== */
 @media (max-width: 980px) {
   body {
     padding-top: 14px !important;
@@ -465,16 +544,52 @@ h2 + br, h3 + br, h4 + br { display: none; }
     width: min(70vw, 250px) !important;
   }
 
+  body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
+    text-align: center !important;
+  }
+
+  body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
+    align-self: center;
+  }
+
   body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child table tr:nth-child(2) td {
     padding-right: 6px !important;
   }
 
-  .button {
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
+    padding: 12px !important;
+  }
+
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions {
     width: 100% !important;
   }
 
-  h2 {
-    padding: 10px 12px;
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px !important;
+    padding: 0 !important;
+  }
+
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile {
+    min-height: 62px !important;
+    padding: 0 14px !important;
+    border-radius: 14px !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+  }
+
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile .material-icons {
+    font-size: 22px !important;
+  }
+
+  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) .nav-tile .nav-text {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  h1 {
+    text-align: center !important;
   }
 
   body > ul {
@@ -483,7 +598,7 @@ h2 + br, h3 + br, h4 + br { display: none; }
   }
 }
 
-/* Very small screens */
+/* ===== VERY SMALL ===== */
 @media (max-width: 520px) {
   body {
     padding-inline: 10px !important;
@@ -497,7 +612,7 @@ h2 + br, h3 + br, h4 + br { display: none; }
   h1 { line-height: 1.18; }
 }
 
-/* Print-friendly */
+/* ===== PRINT ===== */
 @media print {
   body {
     background: #fff !important;
@@ -506,7 +621,7 @@ h2 + br, h3 + br, h4 + br { display: none; }
     padding: 0 !important;
   }
 
-  .button,
+  .nav-tile,
   a[href*="#top"],
   .material-icons {
     display: none !important;
@@ -517,482 +632,5 @@ h2 + br, h3 + br, h4 + br { display: none; }
     box-shadow: none !important;
     border: 1px solid #ddd !important;
     background: #fff !important;
-  }
-}
-
-html, body {
-  color-scheme: light !important;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  text-align: center;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Box titolo/interessi: centro verticale del contenuto */
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-  min-height: 170px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (max-width: 980px) {
-  h1 {
-    text-align: center !important;
-  }
-
-  body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-    text-align: center !important;
-  }
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child {
-  line-height: 1.35;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child h3 {
-  margin-bottom: 8px !important;
-}
-
-/* Keyword/roles sotto il nome (colonna sinistra) */
-/* ===== Profile keywords: dot allineato e wrap chiaro ===== */
-.profile-keywords {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* Keyword a sinistra: dot centrato verticalmente rispetto al blocco testo */
-.profile-keywords > div {
-  position: relative;
-  padding-left: 16px;          /* spazio per il dot */
-  border-radius: 10px;
-  line-height: 1.25;
-  transition: background .15s ease, color .15s ease;
-}
-
-/* il testo lo lasciamo normale */
-.profile-keywords > div {
-  display: block;              /* <- importante: niente flex qui */
-}
-
-/* Dot centrato sul blocco */
-.profile-keywords > div::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.28);
-}
-
-.profile-keywords > div:hover {
-  background: rgba(37, 99, 235, 0.06);
-  color: var(--link-hover);
-}
-
-.profile-keywords > div:hover::before {
-  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
-}
-
-/* Riduce spazio verticale della colonna bottoni (desktop) */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  padding: 6px 10px !important;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) table td {
-  padding: 4px 8px !important; /* molto più compatto per 5 bottoni */
-}
-
-/* Home buttons: override SOLO nella colonna destra della hero */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-  min-height: 36px;
-  padding: 6px 12px !important;
-  width: min(100%, 280px) !important;  /* ~ -1/4 rispetto a 300 */
-}
-
-/* Mobile: compatto SOLO per i bottoni della home */
-@media (max-width: 980px) {
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) a.button {
-    min-height: 40px;
-  }
-}
-/* ===== Modern list style (dot, no classic bullets) ===== */
-body > ul {
-  list-style: none !important;
-  padding-left: 0 !important;
-  margin: 10px 0 18px 0 !important;
-  background: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-body > ul > li {
-  position: relative;
-  padding: 12px 14px 12px 34px !important; /* spazio per il dot */
-  margin: 10px 0 !important;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: var(--shadow-soft);
-}
-
-/* Dot moderno (invece della barretta) */
-body > ul > li::before {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.28);
-}
-
-body > ul > li:hover::before {
-  background: linear-gradient(135deg, var(--button-grad-1), var(--button-grad-2));
-}
-
-/* ===== Hero: tipografia coerente per Research Interests ===== */
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td {
-  font-size: 1rem;
-  color: var(--text);
-}
-
-/* etichetta "Research Interests" come label moderna */
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  color: #1e40af;
-  background: rgba(37, 99, 235, 0.10);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-
-  padding: 6px 10px;
-  border-radius: 999px;
-  margin: 6px 0 10px 0;
-}
-
-/* ===== Research Interests: tags con separatore · e hover sobrio ===== */
-.ri-tags {
-  margin-top: 8px;
-  line-height: 1.55;
-}
-
-.ri-tags .tag {
-  color: var(--text);
-  border-bottom: 1px solid transparent;
-  transition: color .15s ease, border-color .15s ease;
-}
-
-/* separatore elegante tra keyword */
-.ri-tags .tag + .tag::before {
-  content: " · ";
-  color: var(--muted);
-  opacity: 0.9;
-}
-
-/* hover minimale (non pacchiano, non “badge”) */
-.ri-tags .tag:hover {
-  color: var(--link-hover);
-  border-bottom-color: rgba(37, 99, 235, 0.35);
-}
-
-
-/* Badge Research Interests non full-width */
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) b {
-  align-self: flex-start;
-}
-
-/* ===== Label system: 3 tipi coerenti con "RESEARCH INTERESTS" ===== */
-
-/* Tipo 1: Sezioni principali (Publications / Courses / Software / Datasets) */
-body > h2 {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 8px 14px;
-  border-radius: 999px;
-
-  color: #1e40af;
-  background: rgba(37, 99, 235, 0.10);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-
-  box-shadow: none;                 /* evita effetto “bottone” */
-  margin: 26px 0 10px !important;
-}
-
-/* Tipo 2: Sezioni “intro” (Qualification / Academic career / Activities) */
-body > h3 {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 7px 12px;
-  border-radius: 999px;
-
-  color: #1e40af;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.16);
-
-  margin: 26px 0 10px !important;
-}
-
-/* Tipo 3: Sotto-sezioni (Organizing Committee / Program Committee / International Journals, ecc.) */
-body > h4 {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 6px 10px;
-  border-radius: 999px;
-
-  color: var(--muted);
-  background: rgba(15, 23, 42, 0.04);
-  border: 1px solid rgba(15, 23, 42, 0.10);
-
-  margin: 14px 0 10px !important;
-}
-
-/* separatore coerente col resto (·) */
-.sep::before {
-  content: " · ";
-  color: var(--muted);
-  opacity: 0.9;
-  font-weight: 600;
-}
-
-/* ombra un filo più presente */
-body > ul > li,
-body > table:first-of-type > tbody > tr:first-child > td:first-child,
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
-}
-
-/* Bordi e ombre più leggibili (senza diventare “pesanti”) */
-body > table:first-of-type,
-body > table:first-of-type > tbody > tr:first-child > td:first-child,
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2),
-body > ul > li {
-  border-color: rgba(15, 23, 42, 0.18) !important; /* più visibile */
-}
-
-body > table:first-of-type,
-body > ul > li {
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
-}
-
-/* background un filo più distinto */
-body > ul > li,
-body > table:first-of-type > tbody > tr:first-child > td:first-child,
-body > table:first-of-type > tbody > tr:first-child > td:nth-child(2) > table > tbody > tr > td,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:first-child,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  background: #f7fbff !important;
-}
-
-/* =========================================================
-   HERO NAV TILES — stile nuovo con icone quadrate + hover
-   ========================================================= */
-
-/* contenitore destro della seconda riga hero */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 14px 16px !important;
-  text-align: center !important;
-}
-
-/* reset della vecchia logica "bottoni verticali lunghi" */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav > tbody {
-  width: 100% !important;
-}
-
-/* griglia desktop: 3 colonne, 2 righe */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav > tbody {
-  display: grid !important;
-  grid-template-columns: repeat(3, 112px) !important;
-  justify-content: center !important;
-  align-content: center !important;
-  gap: 14px !important;
-  padding: 6px 0 !important;
-}
-
-/* i tr non devono introdurre layout tabellare */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav > tbody > tr {
-  display: contents !important;
-}
-
-/* annulla padding vecchi dei td */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav > tbody > tr > td {
-  padding: 0 !important;
-}
-
-/* tile quadrata */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile {
-  width: 112px !important;
-  height: 88px !important;
-  min-height: 88px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  flex: none !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  position: relative !important;
-  overflow: hidden !important;
-  border-radius: 18px !important;
-  text-decoration: none !important;
-}
-
-/* icona */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile .material-icons {
-  font-size: 28px !important;
-  line-height: 1 !important;
-  transition: transform .18s ease, opacity .18s ease !important;
-}
-
-/* testo nascosto di default su desktop */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile .nav-text {
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 12px;
-
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.15;
-  text-align: center;
-  white-space: normal;
-
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity .18s ease, transform .18s ease !important;
-  pointer-events: none;
-}
-
-/* hover: icona sale e compare il testo */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile:hover .material-icons {
-  transform: translateY(-10px);
-  opacity: 0.22;
-}
-
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile:hover .nav-text {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* su mobile: 2 colonne e testo sempre visibile */
-@media (max-width: 980px) {
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-    padding: 12px !important;
-  }
-
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav > tbody {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
-    padding: 0 !important;
-  }
-
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile {
-    width: 100% !important;
-    height: 56px !important;
-    min-height: 56px !important;
-    border-radius: 14px !important;
-
-    justify-content: flex-start !important;
-    gap: 10px !important;
-    padding: 0 14px !important;
-  }
-
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile .material-icons {
-    font-size: 22px !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-nav a.button.nav-tile .nav-text {
-    position: static !important;
-    opacity: 1 !important;
-    transform: none !important;
-    font-size: 14px !important;
-    text-align: left !important;
-    pointer-events: auto;
-  }
-}
-
-/* =========================================================
-   FINAL OVERRIDES — HERO BUTTONS (incolla in fondo al file)
-   ========================================================= */
-
-/* 1) Nella seconda riga della hero, fai “stretch” così i 2 box hanno stessa altezza */
-body > table:first-of-type > tbody > tr:nth-child(2) {
-  align-items: stretch !important;
-}
-
-/* 2) Il box dei bottoni diventa un contenitore flex */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
-  display: flex !important;
-}
-
-/* 3) La tabella dei bottoni riempie l’altezza e distribuisce lo spazio sopra/sotto */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions,
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important; /* <-- questo elimina il “vuoto sotto” */
-  align-items: center !important;
-  flex: 1 1 auto !important;
-
-  padding: 10px 0 !important;  /* stesso “respiro” sopra e sotto */
-  gap: 12px !important;        /* fallback quando lo spazio è poco */
-}
-
-/* 4) togli padding/margini residui delle celle */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions td {
-  padding: 0 !important;
-}
-
-/* 5) bottoni: stessa dimensione, responsive */
-body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions a.button {
-  width: clamp(260px, 42vw, 340px) !important;
-  min-height: 42px !important;
-  padding: 8px 14px !important;
-}
-
-/* MOBILE: niente “space-between” (sennò fa gap enormi), ma gap fisso */
-@media (max-width: 980px) {
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions,
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions > tbody {
-    justify-content: flex-start !important;
-    padding: 0 !important;
-    gap: 12px !important;
-  }
-
-  body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) > table.hero-actions a.button {
-    width: 100% !important;
-    max-width: 520px !important;
   }
 }
