@@ -606,3 +606,86 @@ body > table:first-of-type > tbody > tr:nth-child(2) > td:nth-child(2) {
 }
 
 html, body { color-scheme: light !important; }
+
+
+/* ===== TOUCH DEVICES: disable sticky hover / icon shift ===== */
+@media (hover: none), (pointer: coarse) {
+  .hero-links-grid {
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .hero-link,
+  .hero-link-wide,
+  .hero-link-full {
+    aspect-ratio: auto !important;
+    min-height: 58px !important;
+    padding: 0 14px !important;
+    border-radius: 14px !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    transform: none !important;
+    transition: box-shadow .18s ease, filter .18s ease !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .hero-link-full {
+    grid-column: 1 / -1 !important;
+  }
+
+  .hero-link .material-icons {
+    font-size: 20px !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-link span {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    white-space: normal !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: none !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    line-height: 1.15 !important;
+    box-shadow: none !important;
+  }
+
+  .hero-link span::after {
+    content: none !important;
+  }
+
+  .hero-link:hover,
+  .hero-link:focus,
+  .hero-link:focus-visible,
+  .hero-link:active,
+  .hero-link-full:hover,
+  .hero-link-full:focus,
+  .hero-link-full:focus-visible,
+  .hero-link-full:active {
+    transform: none !important;
+    filter: none !important;
+    box-shadow: 0 10px 24px rgba(37,99,235,0.18) !important;
+    outline: none !important;
+  }
+}
+
+/* narrow portrait phones */
+@media (hover: none) and (pointer: coarse) and (max-width: 700px),
+       (pointer: coarse) and (max-width: 700px) {
+  .hero-links-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-link-full {
+    grid-column: auto !important;
+  }
+}
